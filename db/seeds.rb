@@ -1,7 +1,5 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+news_seed_path = Rails.root.join('db', 'news_seed.json')
+JSON.parse(IO.read(news_seed_path)).each do |news|
+  news_item = NewsItem.new_from_feed_item news
+  news_item.save
+end if File.exist? news_seed_path
