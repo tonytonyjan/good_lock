@@ -76,6 +76,14 @@ img {
    background: $block-primary-color image-url('background-gird.png') repeat;
    z-index: 1000;
 }
+#messages-page {
+   background: $block-primary-color image-url('background-gird.png') repeat;
+   z-index: 2000;
+}
+#message-page {
+   background: $block-primary-color image-url('background-gird.png') repeat;
+   z-index: 3000;
+}
 .empty-event-card {
    margin-top:140px;
    margin-bottom:200px;

@@ -114,6 +114,44 @@ app.service('Events', ['$http', function ($http) {
 
    };
 
+   this.setLock = function (item) {
+      
+      console.log(item);
+
+      $http({
+         method: 'PUT',
+         url: '/events/'+item.id,
+         params: {
+            'event[state]': 'lock'
+         }
+      })
+      .success(function (data, status, headers, config) {
+         console.log(data);
+      })
+      .error(function (data, status, headers, config) {
+      });
+
+   };
+
+   this.setUnlock = function (item) {
+      
+      console.log(item);
+
+      $http({
+         method: 'PUT',
+         url: '/events/'+item.id,
+         params: {
+            'event[state]': 'unlock'
+         }
+      })
+      .success(function (data, status, headers, config) {
+         console.log(data);
+      })
+      .error(function (data, status, headers, config) {
+      });
+
+   };
+
 }]);
 
 app.service('Swiper', ['$http', function ($http) {
@@ -466,6 +504,14 @@ app.controller('SettingsHeaderCtrl', ['$scope', function ($scope) {
       }
 
    };
+
+}]);
+
+app.controller('MessagesCtrl', ['$scope', function ($scope) {
+
+}]);
+
+app.controller('MessageCtrl', ['$scope', function ($scope) {
 
 }]);
 
