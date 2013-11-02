@@ -1,6 +1,6 @@
 namespace :news do
   desc "撈所有 Yahoo、Flickr 的資料"
-  task fetch: %i(fetch:yahoo fetch:flickr)
+  task fetch: %i(fetch:yahoo fetch:flickr fetch:iculture)
 
   desc "先從 news_seed.json 匯入新聞到 db，再 `news:fetch`，再將 db 匯出回 news_seed.json"
   task export: :environment do
@@ -100,5 +100,31 @@ namespace :news do
       end
       logger.close
     end # task flickr: :environment do
+
+    desc "抓取文化部的 open data"
+    task iculture: :environment do
+      uri = URI('http://cloud.culture.tw/frontsite/trans/SearchShowAction.do?method=doFindTypeJ&keyword=2013')
+      log_file = File.open(Rails.root.join('log', "#{Rails.env}.news.log"), 'a')
+      logger = Logger.new MultiDelegator.delegate(:write, :close).to(STDOUT, log_file)
+
+      logger.info "[請求] #{uri}"
+
+      begin
+        body = JSON.parse Net::HTTP.get(uri)
+        body.each do |raw_item|
+          ICultureItem.extract_item(raw_item).each do |item|
+            i_culture_item = ICultureItem.new_from_item(item)
+            if i_culture_item.save
+              logger.info %Q{\e[1;32m[新增]\e[0;39;49m #{I18n.l i_culture_item.publish_at, format: :long} "#{i_culture_item.title}"}
+            else
+              logger.warn %Q{\e[1;31m[跳過]\e[0;39;49m #{I18n.l i_culture_item.publish_at, format: :long} #{i_culture_item.errors.full_messages.join(', ')}}
+            end
+          end
+        end
+      rescue Exception => e
+        logger.warn "#{e.class}: #{e.message}"
+        logger.warn e.backtrace.join($/)
+      end
+    end
   end
 end
