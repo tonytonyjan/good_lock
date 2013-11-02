@@ -56,3 +56,47 @@ app.controller('CalHeaderCtrl', ['$scope', function ($scope) {
    };
 
 }]);
+
+$(function(){
+
+   if ($('#open_calendar_button').length) {
+
+      $('#open_calendar_button').pickadate({
+         
+         // Any false-y value will hide the button.
+         today: '',
+         clear: 'Close',
+         onOpen: function() {
+            //console.log('Opened up!');
+            $('#calendar-footer').css('z-index', 400);
+         },
+         onClose: function() {
+            //console.log('Closed now')
+            $('#calendar-footer').css('z-index', 500);
+         },
+         onRender: function() {
+            //console.log('Just rendered anew')
+         },
+         onStart: function() {
+            //console.log('Hello there :)')
+         },
+         onStop: function() {
+            //console.log('See ya')
+         },
+         onSet: function(thingSet) {
+            
+            if (typeof(thingSet.select) !== "undefined") {
+               //var date = new Date(thingSet.select);
+               //var CalHeaderCtrlEl = angular.element($('#calendar-header'));;
+               //var scope = CalHeaderCtrlEl.scope();
+               //console.log(date);
+               //scope.callEventsByFilter(date.toString("yyyy-MM-dd"));   
+            }
+            
+         }
+
+      })
+
+   }
+
+})

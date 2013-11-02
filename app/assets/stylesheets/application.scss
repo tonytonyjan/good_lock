@@ -11,6 +11,9 @@
  *= require pure-min
  *= require bootstrap.min
  *= require font-awesome
+ *= require picker/default
+ *= require picker/default.date
+ *= require picker/default.time
  *= require_self
  *= require_tree .
  */
