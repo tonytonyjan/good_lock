@@ -54,6 +54,8 @@ img {
 }
 
 // module rule
+
+// login related module rule
 #login-form-logo-block {
    width: 260px;
    margin: 40px auto 0px auto; 
@@ -79,4 +81,12 @@ img {
    border: 0px;
    box-shadow: none;
    -webkit-box-shadow: none;   
+}
+.login-block h1 {
+   color: $primary-font-color;
+   font-size: 1.4em;
+   text-align: center;
+   width: 200px;  
+   margin-bottom: 30px;
+   margin-top: 5px;
 }
