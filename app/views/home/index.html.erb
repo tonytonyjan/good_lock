@@ -9,6 +9,7 @@
 
 <!-- calendar page -->
 <div id="calendar-page" class="bigEntrance absolute-layout" ng-controller="CalCtrl">
+   <%= render :partial => "common/calendar_header" %>
 </div>
 
 <%= link_to 'Sing out', session_path, method: :delete %>

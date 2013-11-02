@@ -26,3 +26,7 @@ app.controller('LoginCtrl', ['$scope', function ($scope) {
    };
 
 }]);
+
+app.controller('CalCtrl', ['$scope', function ($scope) {
+
+}]);
