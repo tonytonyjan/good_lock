@@ -119,4 +119,15 @@
 <!-- message page -->
 <div id="message-page" class="absolute-layout hide" ng-controller="MessageCtrl">
    <%= render :partial => "common/message_header" %>
+   <div class="fixed-header-main-content-with-msry">
+      <div class="detail-item-image">
+         <img ng-src="{{ messageItem && messageItem.image_url || '' }}">
+      </div>
+      <div class="detail-item-title">
+         {{ messageItem.title }}
+      </div>
+      <div class="detail-item-content">
+         {{ messageItem.description }}
+      </div>
+   </div>
 </div>

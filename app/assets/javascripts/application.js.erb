@@ -696,8 +696,13 @@ app.controller('MessagesCtrl', ['$scope', 'Tool', 'Messages', function ($scope, 
 
    };
 
-   $scope.openMessage = function () {
+   $scope.openMessage = function (index) {
 
+      // open messages
+      var MessageCtrlEl = angular.element($('#message-page'));
+      var scope = MessageCtrlEl.scope();
+      scope.openMessage($scope.messages[index]);
+      
    };
    
    $scope.pushMessages = function (messages) {
@@ -759,7 +764,7 @@ app.controller('MessageCtrl', ['$scope', function ($scope) {
       }
 
    };
-   
+
 }]);
 
 function triggerActiveDate() {
