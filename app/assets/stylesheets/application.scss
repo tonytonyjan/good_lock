@@ -55,6 +55,16 @@ img {
 }
 
 // module rule
+.circle-btn {
+   padding: 2px 6px;
+   font-size: 15px;
+   line-height: 1.5;
+   border-radius: 15px;
+   margin: 3px 5px;
+   border-color: $whilt-color;
+   background-color: $block-primary-color;
+}
+
 #calendar-header {
    height: 2.7em;
    background-color: $block-primary-color;
@@ -62,6 +72,13 @@ img {
    position: fixed;
    top: 0px;
    z-index: 500;
+}
+#calendar-header h1 {
+   color: $whilt-color;
+   font-size: 1.2em;
+   margin: 0px;
+   line-height: 2.2em;
+   padding-left: 10px;
 }
 
 // login related module rule
