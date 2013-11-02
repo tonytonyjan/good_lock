@@ -33,4 +33,22 @@ app.controller('CalCtrl', ['$scope', function ($scope) {
 
 app.controller('CalHeaderCtrl', ['$scope', function ($scope) {
 
+   $scope.openSettings = function () {
+
+      var calendarPage = angular.element($('#calendar-page'));
+      var settingsPage = angular.element($('#settings-page'));
+
+      if (settingsPage.hasClass('hide') && !calendarPage.hasClass('hide')) {
+         // open settings
+         settingsPage.removeClass('hide');
+         settingsPage.removeClass('animated fadeOutDownBig');
+         settingsPage.addClass('slideUp');
+         setTimeout(function () {
+            calendarPage.addClass('hide');
+         }, 1500);
+         
+      }
+ 
+   };
+
 }]);

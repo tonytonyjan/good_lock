@@ -53,6 +53,10 @@ img {
 #calendar-page {
    background: $block-primary-color image-url('background-gird.png') repeat;  
 }
+#settings-page {
+   background: $block-primary-color image-url('background-gird.png') repeat;
+   z-index: 1000;
+}
 
 // module rule
 .circle-btn {
@@ -64,7 +68,6 @@ img {
    border-color: $whilt-color;
    background-color: $block-primary-color;
 }
-
 #calendar-header {
    height: 2.7em;
    background-color: $block-primary-color;
