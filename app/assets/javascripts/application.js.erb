@@ -702,7 +702,7 @@ app.controller('MessagesCtrl', ['$scope', 'Tool', 'Messages', function ($scope, 
       var MessageCtrlEl = angular.element($('#message-page'));
       var scope = MessageCtrlEl.scope();
       scope.openMessage($scope.messages[index]);
-      
+
    };
    
    $scope.pushMessages = function (messages) {
@@ -848,15 +848,17 @@ $(function(){
 
 $(function(){
 
-   msnry_container = document.querySelector('#messages_container');
-   msnry = new Masonry( msnry_container, {
-     columnWidth: '.grid-sizer',
-     itemSelector: '.item'
-   });
-   msnry.on('layoutComplete', function() {
-     console.log('layout done, just this one time');
-     imageLayoutRefine();
-     return true;
-   });
+   if ($('#messages_container').length) {
+      msnry_container = document.querySelector('#messages_container');
+      msnry = new Masonry( msnry_container, {
+        columnWidth: '.grid-sizer',
+        itemSelector: '.item'
+      });
+      msnry.on('layoutComplete', function() {
+        console.log('layout done, just this one time');
+        imageLayoutRefine();
+        return true;
+      });
+   }
 
 })
