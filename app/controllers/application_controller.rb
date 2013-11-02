@@ -16,4 +16,12 @@ class ApplicationController < ActionController::Base
       format.json { head :unauthorized }
     end
   end
+
+  def token_expired?
+    current_user && Time.now.to_i > current_user.expires_at
+  end
+
+  def refresh_token
+    redirect_to '/auth/google_oauth2'
+  end
 end
