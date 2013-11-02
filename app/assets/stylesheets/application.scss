@@ -29,3 +29,7 @@ body {
    color: $default-font-color;
    background: $block-primary-color image-url('background-gird.png') repeat;
 }
+
+img {
+   max-width: 100%;
+}
