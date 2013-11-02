@@ -43,3 +43,17 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem 'omniauth-google-oauth2'
+gem 'settingslogic'
+gem 'jquery-turbolinks'
+gem 'enumerize'
+gem 'cancan'
+gem 'capistrano'
+gem 'capistrano-rails'
+gem 'capistrano-bundler'
+gem 'capistrano-rvm'
+gem 'therubyracer', require: 'v8'
+gem 'whenever', require: false
+gem 'kaminari'
+gem 'rails-i18n'
