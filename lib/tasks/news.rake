@@ -49,4 +49,9 @@ namespace :news do
   task export: %i(db:seed fetch) do
     File.write(Rails.root.join('db', 'news_seed.json'), NewsItem.all.map(&:raw_data).to_json)
   end
+
+  desc "從 raw data 重新產生資料"
+  task reload: :environment do
+    NewsItem.find_each{ |news_item| news_item.reload_from_raw_data! }
+  end
 end

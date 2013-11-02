@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131102050648) do
+ActiveRecord::Schema.define(version: 20131102062607) do
 
   create_table "events", force: true do |t|
     t.integer  "user_id",                      null: false
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20131102050648) do
     t.text     "raw_data"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "image_url"
   end
 
   add_index "news_items", ["guid"], name: "index_news_items_on_guid", unique: true
