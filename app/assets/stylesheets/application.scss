@@ -111,6 +111,11 @@ img {
    height:8px;
    margin: 8px;
 }
+.circle-blue {
+   border-color: $block-primary-color;
+   background-color: $block-primary-color;
+}
+
 #calendar-header, #settings-header {
    height: 2.7em;
    background-color: $block-primary-color;
@@ -229,4 +234,25 @@ img {
    text-align: center;
    background-color: white;
    left: -30px;
+}
+.event-summary {
+   width: 82%;
+   padding: 15px;
+   border-radius: 5px;
+   margin: 15px 40px;
+   background-color: $whilt-color;
+}
+.lockevent {
+   background: none;
+}
+.lock-btn {
+   width: 22px;
+   height: 22px;
+   line-height: 0px;
+   display: none;
+}
+.dot-card {
+   width: 30px;
+   height: 70px;
+   margin: 5px auto;
 }

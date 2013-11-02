@@ -20,6 +20,30 @@
                <div class="event-end pull-left">
                   {{ event.endFormat }}
                </div>
+               <div class="pull-left well event-summary full-edge-shadow pure-g" ng-class="{ lockevent: event.lock_status == 'lock' }">
+                  <div class="pure-u-4-5">
+                     {{ event.summary }}
+                  </div>
+                  <div class="pure-u-1-5">
+                     <div class="lock-btn pull-right" ng-class="{ show: event.lock_status == 'unset' }">
+                        <%= image_tag "ui/unset-btn.png" %>
+                     </div>
+                     <div class="lock-btn pull-right" ng-class="{ show: event.lock_status == 'lock' }">
+                        <%= image_tag "ui/lock-btn.png" %>
+                     </div>
+                     <div class="lock-btn pull-right" ng-class="{ show: event.lock_status == 'unlock' }">
+                        <%= image_tag "ui/unlock-btn.png" %>
+                     </div>
+                  </div>
+               </div>
+            </div><!-- end event-item-card -->
+            <div class="dot-card row hatch" ng-class="{ hide: $index == (events.length-1) }">
+               <div class="circle circle-blue">
+               </div>
+               <div class="circle circle-blue">
+               </div>
+               <div class="circle circle-blue">
+               </div>
             </div>
          </div>
          <div class="empty-event-card hatch" ng-show="!events.length">
