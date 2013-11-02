@@ -1,0 +1,1 @@
+json.extract! @news_item, :guid, :title, :description, :link, :publish_at, :raw_data
