@@ -149,6 +149,36 @@ app.controller('LoginCtrl', ['$scope', function ($scope) {
 
 app.controller('CalCtrl', ['$scope', 'Events', function ($scope, Events) {
 
+   $scope.events = [];
+
+   $scope.changeLockStatus = function (index) {
+
+      if ($scope.events[index].lock_status=='unset') {
+      
+         $scope.events[index].lock_status = 'lock';
+         Events.setLock($scope.events[index]);
+      
+      } else if ($scope.events[index].lock_status=='lock') {
+      
+         $scope.events[index].lock_status = 'unlock';
+         Events.setUnlock($scope.events[index]);
+         // open messages
+         //var MessagesCtrlEl = angular.element($('#messages-page'));
+         //var scope = MessagesCtrlEl.scope();
+         //scope.openMessages($scope.events[index]);
+      
+      } else if ($scope.events[index].lock_status=='unlock') {
+      
+         $scope.events[index].lock_status = 'unlock';
+         // open messages
+         //var MessagesCtrlEl = angular.element($('#messages-page'));
+         //var scope = MessagesCtrlEl.scope();
+         //scope.openMessages($scope.events[index]);
+      
+      }
+
+   };
+
    $scope.pushEvents = function (events) {
       
       for (var i = 0; i < events.length; i++) { 
@@ -200,6 +230,41 @@ app.controller('CalHeaderCtrl', ['$scope', function ($scope) {
          
       }
  
+   };
+
+   $scope.callEventsByFilter = function (date_format) {
+
+      var CalFooterCtrlEl = angular.element($('#calendar-footer'));
+      var scope = CalFooterCtrlEl.scope();
+
+      var setDate = Date.parse(date_format);
+      var minDate = Date.parse(scope.datebtns[0].date_format);
+      var maxDate = Date.parse(scope.datebtns[scope.datebtns.length-1].date_format);
+      var min_compare = setDate.compareTo(minDate);
+      var max_compare = setDate.compareTo(maxDate);
+      
+      if (min_compare<0) {
+      
+         var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+         var diffDays = Math.round(Math.abs((setDate.getTime() - minDate.getTime())/(oneDay)));
+         scope.addPreDay(diffDays);
+      
+      } else if (max_compare>0) {
+      
+         var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+         var diffDays = Math.round(Math.abs((maxDate.getTime() - setDate.getTime())/(oneDay)));
+         scope.addNextDay(diffDays);
+      
+      } else {
+      
+         for (var i = 0; i < scope.datebtns.length; i++) {
+            if (scope.datebtns[i].date_format==date_format) {
+               calendarSwiper.swipeTo(i);
+            }
+         }
+      
+      }
+
    };
 
 }]);
@@ -291,6 +356,54 @@ app.controller('CalFooterCtrl', ['$scope', 'Events', 'Swiper', function ($scope,
       var init_swip_to = calendarSwiper.activeIndex;
       Swiper.rebuild(init_swip_to);
       
+   };
+
+   $scope.addPreDay = function (less_day) {
+
+      var currentMinDay = Date.parse($scope.datebtns[0].date_format);
+
+      for (var i=1; i<=less_day; i++) {
+         var date = currentMinDay.add(-1).days();
+         $scope.datebtns.unshift(
+            {
+               date_format: date.toString("yyyy-MM-dd"),
+               month: date.toString("MMM"),
+               date: date.toString("d"),
+               day: date.toString("ddd")
+            }
+         );
+      }
+
+      var init_swip_to = 0;
+      Swiper.rebuild(init_swip_to);
+
+   };
+
+   $scope.addNextDay = function (more_day) {
+
+      var currentMaxIndex = $scope.datebtns.length-1;
+      var currentMaxDay = Date.parse($scope.datebtns[currentMaxIndex].date_format);
+      
+      console.log(more_day);
+      for (var i=1; i<=more_day; i++) {
+         var date = currentMaxDay.add(1).days();
+         console.log(date);
+         $scope.datebtns.push(
+            {
+               date_format: date.toString("yyyy-MM-dd"),
+               month: date.toString("MMM"),
+               date: date.toString("d"),
+               day: date.toString("ddd")
+            }
+         );
+      }
+
+      var init_swip_to = $scope.datebtns.length-1;
+      Swiper.rebuild(0);
+      setTimeout(function () {
+         calendarSwiper.swipeTo(init_swip_to+10);
+      }, 1000);
+
    };
 
 }]);
@@ -424,7 +537,7 @@ $(function(){
                var date = new Date(thingSet.select);
                var CalHeaderCtrlEl = angular.element($('#calendar-header'));
                var scope = CalHeaderCtrlEl.scope();
-               //scope.callEventsByFilter(date.toString("yyyy-MM-dd"));   
+               scope.callEventsByFilter(date.toString("yyyy-MM-dd"));   
             }
             
          }
