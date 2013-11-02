@@ -46,6 +46,30 @@ Date.prototype.toISOLocalDateTimeString = function() {
             + "Z";
 }
 
+function imageLayoutRefine() {
+
+   $(".item-image").each(function(){
+
+      var refH = $(this).height();
+      var refW = $(this).width();
+      var refRatio = refW/refH;
+
+      var imgH = $(this).children("img").height();
+      var imgW = $(this).children("img").width();
+
+      $(this).children("img").removeClass("portrait");
+      $(this).children("img").removeClass("landscape");
+
+      if ( (imgW/imgH) < refRatio ) { 
+         $(this).children("img").addClass("portrait");
+      } else {
+         $(this).children("img").addClass("landscape");
+      }
+   
+   });
+
+}
+
 var token = '';
 var refresh_token = '';
 var useremail = '';
