@@ -1,4 +1,12 @@
 <footer id="calendar-footer" ng-controller="CalFooterCtrl">
    <div class="swiper-container" style="width: 335px; height: 60px;">
+      <div class="swiper-wrapper">
+         <div class="swiper-slide date-btn-block" ng-repeat="datebtn in datebtns" ng-click="swipeToSlide($index)">
+            <div class="date-btn-day">{{ datebtn.day }}</div>
+            <div class="date-btn-date">{{ datebtn.date }}</div>
+            <div class="date-btn-month">{{ datebtn.month }}</div>
+         </div>
+      </div>
+      <div class="pagination"></div>
    </div>
 </footer>

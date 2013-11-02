@@ -168,3 +168,24 @@ img {
    padding: 10px 5px;
    border-bottom: 1px solid #dadada;
 }
+
+// calendar related module rule
+.date-btn-block{
+   width: 40px;
+   height: 60px;
+}
+.date-btn-day, .date-btn-month {
+   font-size: 12px;
+   line-height: 12px;
+   text-align: center;
+   padding: 5px 0px;
+}
+.date-btn-date {
+   font-size: 18px;
+   line-height: 16px;
+   text-align: center;
+}
+.swiper-slide-active {
+   color: $whilt-color;
+   background-color: $block-primary-color;
+}

@@ -25,6 +25,14 @@
 
 var app = angular.module('app', []);
 
+app.service('Events', ['$http', function ($http) {
+
+}]);
+
+app.service('Swiper', ['$http', function ($http) {
+
+}]);
+
 app.controller('LoginCtrl', ['$scope', function ($scope) {
 
    $scope.googleOauth2 = function () {
@@ -59,7 +67,47 @@ app.controller('CalHeaderCtrl', ['$scope', function ($scope) {
 
 }]);
 
-app.controller('CalFooterCtrl', ['$scope', function ($scope) {
+app.controller('CalFooterCtrl', ['$scope', 'Events', 'Swiper', function ($scope, Events, Swiper) {
+
+   var today = Date.today();
+   $scope.datebtns = [];
+
+   for (var i=10; i>=1; i--) {
+      var date = Date.today().add(-i).days();
+      $scope.datebtns.push(
+         {
+            date_format: date.toString("yyyy-MM-dd"),
+            month: date.toString("MMM"),
+            date: date.toString("d"),
+            day: date.toString("ddd")
+         }
+      );
+   }
+
+   $scope.datebtns.push(
+      {
+         date_format: today.toString("yyyy-MM-dd"),
+         month: today.toString("MMM"),
+         date: today.toString("d"),
+         day: today.toString("ddd")
+      }
+   );
+
+   for (var i=1; i<=10; i++) {
+      var date = Date.today().add(i).days();
+      $scope.datebtns.push(
+         {
+            date_format: date.toString("yyyy-MM-dd"),
+            month: date.toString("MMM"),
+            date: date.toString("d"),
+            day: date.toString("ddd")
+         }
+      );
+   }
+
+   $scope.swipeToSlide = function(index) {
+      calendarSwiper.swipeTo(index);
+   }
 
 }]);
 
@@ -123,6 +171,42 @@ app.controller('SettingsHeaderCtrl', ['$scope', function ($scope) {
    };
 
 }]);
+
+function triggerActiveDate() {
+
+   var CalFooterCtrlEl = angular.element($('#calendar-footer'));;
+   var scope = CalFooterCtrlEl.scope();
+   /*scope.callEventsgetByDate(calendarSwiper.activeIndex);
+
+   if ((scope.datebtns.length-calendarSwiper.activeIndex)<7) {
+      scope.addNextTenDay();
+   }
+
+   if ((calendarSwiper.activeIndex)<6) {
+      scope.addPreTenDay();
+   }*/
+
+}
+
+$(function(){
+
+   if ($('.swiper-container').length) {
+
+      calendarSwiper = new Swiper('.swiper-container',{
+         centeredSlides: true,
+         slidesPerView: 'auto',
+         pagination: '.pagination',
+         paginationClickable: true,
+         autoResize: false
+      });
+      calendarSwiper.swipeTo(10);
+      calendarSwiper.wrapperTransitionEnd(triggerActiveDate, true);
+      var initWidth = parseInt($(".swiper-wrapper").css("width"))+300;
+      $(".swiper-wrapper").css("width", initWidth+"px");
+
+   }
+
+})
 
 $(function(){
 
