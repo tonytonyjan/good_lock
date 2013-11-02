@@ -289,6 +289,24 @@ app.service('Tool', ['$http', function ($http) {
    
    };
 
+   this.renderMsnry = function () {
+
+      msnry.destroy();
+      msnry_container = document.querySelector('#messages_container');
+      msnry = new Masonry( msnry_container, {
+        columnWidth: '.grid-sizer',
+        itemSelector: '.item'
+      });
+      msnry.on('layoutComplete', function() {
+        console.log('layout done, just this one time');
+        imageLayoutRefine();
+        return true;
+      });
+
+      imageLayoutRefine();
+   
+   };
+
 }]);
 
 app.controller('LoginCtrl', ['$scope', function ($scope) {
@@ -628,6 +646,8 @@ app.controller('MessagesCtrl', ['$scope', 'Tool', 'Messages', function ($scope, 
 
    $scope.openMessages = function (eventItem) {
 
+      $('#messages_container').css('visibility', 'hidden');
+
       $scope.eventItem = eventItem;
 
       var start_at = $scope.eventItem.start.dateTime;
@@ -642,8 +662,6 @@ app.controller('MessagesCtrl', ['$scope', 'Tool', 'Messages', function ($scope, 
 
       var calendarPage = angular.element($('#calendar-page'));
       var messagesPage = angular.element($('#messages-page'));
-      var messagesContainer = angular.element($('#messages_container'));
-      messagesContainer.addClass('hide');
 
       if (messagesPage.hasClass('hide') && !calendarPage.hasClass('hide')) {
          // open messages
@@ -651,9 +669,9 @@ app.controller('MessagesCtrl', ['$scope', 'Tool', 'Messages', function ($scope, 
          messagesPage.removeClass('animated slideOutRight');
          messagesPage.addClass('slideLeft');
          setTimeout(function () {
-            messagesContainer.removeClass('hide');
             calendarPage.addClass('hide');
             Tool.renderMsnry();
+            $('#messages_container').css('visibility', 'visible');
          }, 1500);
          
       }

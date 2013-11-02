@@ -100,7 +100,12 @@
                {{ message.title }}
             </div>
             <div class="item-type-image" ng-class="{ hide: message.layout.title == 'off' }">
-               <%= image_tag "ui/yahoo-flag.png" %>
+               <div ng-class="{ hide: message.type != 'YahooItem' }">
+                  <%= image_tag "ui/yahoo-flag.png" %>
+               </div>
+               <div ng-class="{ hide: message.type != 'FlickrItem' }">
+                  <%= image_tag "ui/flickr-flag.png" %>
+               </div>
             </div>
          </div>
       </div>
@@ -113,4 +118,5 @@
 
 <!-- message page -->
 <div id="message-page" class="absolute-layout hide" ng-controller="MessageCtrl">
+   <%= render :partial => "common/message_header" %>
 </div>
