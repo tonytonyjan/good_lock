@@ -59,6 +59,11 @@ img {
    background: $block-gray-color image-url('white-grid-bg-s.png') repeat; 
    min-height: 460px;
 }
+.fixed-header-footer-main-content {
+   padding: 50px 0px 60px 0px;
+   background: $block-gray-color image-url('white-grid-bg-s.png') repeat;
+   min-height: 420px;
+}
 .fixed-header-main-content h3 {
    font-size: 1.2em;
    margin-left: 5px;
