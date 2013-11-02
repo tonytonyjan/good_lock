@@ -275,6 +275,62 @@ img {
    font-size: 30px;
    line-height: 14px;
 }
+.masonry .item,
+.masonry .grid-sizer {
+  width:  25%;
+  overflow: none;
+}
+.masonry .item,
+.masonry .grid-sizer {
+  height: 80px;
+  float: left;
+}
+.item {
+   overflow: hidden;  
+}
+.item.w2 { width:  50%; }
+.item.w3 { width:  75%; }
+.item.h2 { height: 160px; }
+.item.h3 { height: 240px; }
+.item.h4 { height: 320px; }
+.item-image img.portrait {
+   width: 100%;
+   overflow: hidden;
+}
+.item-image img.landscape {
+   height: 100%;
+   overflow: hidden;
+}
+.item-image {
+   width: 100%; 
+   height: 100%;  
+}
+.fullscreen-btn {
+   position: absolute;
+   top: 25%;
+   left: 48%;
+   width: 20px;
+   height: 20px;
+}
+.item-title-block {
+   font-size: 16px;
+   position: absolute;
+   bottom: 0;
+   height: 35px;
+   background: #fff;
+   width: 100%;
+   opacity: 0.8;
+   padding-top: 5px;
+   padding-left: 37px;
+   overflow: hidden;
+   white-space: nowrap;
+}
+.item-type-image {
+   position: absolute; 
+   bottom: 4px;
+   left: 5px;
+   width: 30px; 
+}
 
 // state rule
 .bounce, .pulse, .floating, .tossing, .pullUp, .pullDown, .stretchLeft, .stretchRight {

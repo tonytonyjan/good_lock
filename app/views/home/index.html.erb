@@ -46,9 +46,8 @@
                </div>
             </div>
          </div>
-         <div class="empty-event-card hatch" ng-show="!events.length">
-            <h2 class="big-shadow-font">Wow!</h2>
-            <h3 class="big-shadow-font">您今天好像很閒喔！</h3>
+         <div class="hatch" ng-show="!events.length" style="text-align: center; width: 80%; margin: 70px auto 70px auto;">
+            <%= image_tag "calendar-freeday.png" %>
          </div>
       </div>
    </div>
@@ -89,6 +88,21 @@
    <%= render :partial => "common/messages_header" %>
    <div class="fixed-header-main-content-with-msry">
       <div id="messages_container" class="masonry" ng-class="{ hide: !messages.length }">
+         <div class="grid-sizer"></div>
+         <div ng-repeat="message in messages" class="item {{ message.layout.block }}" ng-click="openMessage($index)">
+            <div class="item-image">
+               <img ng-src="{{ message && message.image_url || '' }}" />
+            </div>
+            <div class="fullscreen-btn">
+               <%= image_tag "ui/fullscreen-btn.png" %>
+            </div>
+            <div class="item-title-block" ng-class="{ hide: message.layout.title == 'off' }">
+               {{ message.title }}
+            </div>
+            <div class="item-type-image" ng-class="{ hide: message.layout.title == 'off' }">
+               <%= image_tag "ui/yahoo-flag.png" %>
+            </div>
+         </div>
       </div>
       <div class="empty-event-card hatch" ng-show="!messages.length">
          <h2 class="big-shadow-font">Wow!</h2>
