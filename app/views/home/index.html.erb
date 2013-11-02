@@ -15,6 +15,5 @@
 <!-- settings page -->
 <div id="settings-page" class="absolute-layout hide">
    <%= render :partial => "common/settings_header" %>
+   <%= link_to "Sign Out", session_path, method: :delete, :class=>"btn btn-primary btn-lg btn-block block-primary-color", :style=>"margin: 20px auto 30px auto;width: 90%;" %>
 </div>
-
-<%= link_to 'Sing out', session_path, method: :delete %>
