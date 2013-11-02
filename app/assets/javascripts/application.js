@@ -30,3 +30,7 @@ app.controller('LoginCtrl', ['$scope', function ($scope) {
 app.controller('CalCtrl', ['$scope', function ($scope) {
 
 }]);
+
+app.controller('CalHeaderCtrl', ['$scope', function ($scope) {
+
+}]);

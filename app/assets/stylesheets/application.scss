@@ -55,6 +55,15 @@ img {
 }
 
 // module rule
+#calendar-header {
+   height: 2.7em;
+   background-color: $block-primary-color;
+   width: 100%;
+   position: fixed;
+   top: 0px;
+   z-index: 500;
+}
+
 // login related module rule
 #login-form-logo-block {
    width: 260px;
