@@ -203,6 +203,69 @@ app.service('Swiper', ['$http', function ($http) {
 
 }]);
 
+app.service('Tool', ['$http', function ($http) {
+
+   var layoutArray = [
+      {
+         block: 'w2 h2',
+         title: 'on'
+      },
+      {
+         block: 'w2 h1',
+         title: 'off'
+      },
+      {
+         block: 'w2 h1',
+         title: 'off'
+      },
+      {
+         block: 'w2 h1',
+         title: 'off'
+      },
+      {
+         block: 'w2 h2',
+         title: 'on'
+      }, 
+      {
+         block: 'w2 h1',
+         title: 'off'
+      },
+      {
+         block: 'w2 h2',
+         title: 'on'
+      },
+      {
+         block: 'w2 h2',
+         title: 'on'
+      }
+   ];
+
+   var tempPicArray = [
+      '/assets/temp-photo/1.jpg', 
+      '/assets/temp-photo/2.jpg', 
+      '/assets/temp-photo/3.jpg',
+      '/assets/temp-photo/4.jpg',
+      '/assets/temp-photo/5.jpg', 
+      '/assets/temp-photo/6.jpg',
+      '/assets/temp-photo/7.jpg',
+      '/assets/temp-photo/8.jpg'
+   ];
+
+   this.getThisItemLayout = function (index) {
+
+      var layoutArrayIndex = index%8;
+      return layoutArray[layoutArrayIndex];
+   
+   };
+
+   this.getRandomPic = function () {
+
+      return tempPicArray[Math.floor(Math.random() * tempPicArray.length)];
+   
+   };
+
+}]);
+
 app.controller('LoginCtrl', ['$scope', function ($scope) {
 
    $scope.googleOauth2 = function () {
@@ -533,7 +596,7 @@ app.controller('SettingsHeaderCtrl', ['$scope', function ($scope) {
 
 }]);
 
-app.controller('MessagesCtrl', ['$scope', 'Tool', function ($scope, Tool) {
+app.controller('MessagesCtrl', ['$scope', 'Tool', 'Messages', function ($scope, Tool, Messages) {
 
    $scope.eventItem = {};
    $scope.messages = {};
@@ -597,14 +660,7 @@ app.controller('MessagesCtrl', ['$scope', 'Tool', function ($scope, Tool) {
       for (var i = 0; i < messages.length; i++) { 
 
          if (i<=23) {
-            
-            if (typeof(messages[i].raw_data.content) !== "undefined") {
-               messages[i].randomPic = messages[i].raw_data.content.url;
-            } else {
-               messages[i].randomPic = Tool.getRandomPic();   
-            }
             messages[i].layout = Tool.getThisItemLayout(i); 
-            
             $scope.messages.push(messages[i]);
          }
          
