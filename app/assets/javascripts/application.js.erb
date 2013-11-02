@@ -721,6 +721,45 @@ app.controller('MessagesCtrl', ['$scope', 'Tool', 'Messages', function ($scope, 
 
 app.controller('MessageCtrl', ['$scope', function ($scope) {
 
+   $scope.messageItem = {};
+
+   $scope.openMessage = function (messageItem) {
+      
+      $scope.messageItem = messageItem;
+      var messagesPage = angular.element($('#messages-page'));
+      var messagePage = angular.element($('#message-page'));
+
+      if (messagePage.hasClass('hide') && !messagesPage.hasClass('hide')) {
+         // open message
+         messagePage.removeClass('hide');
+         messagePage.removeClass('animated fadeOutDownBig');
+         messagePage.addClass('slideUp');
+         setTimeout(function () {
+            messagesPage.addClass('hide');
+         }, 1500);
+         
+      }
+
+   };
+
+   $scope.closeMessage = function () {
+      
+      var messagesPage = angular.element($('#messages-page'));
+      var messagePage = angular.element($('#message-page'));
+
+      if (messagesPage.hasClass('hide') && !messagePage.hasClass('hide')) {
+         // close settings
+         messagesPage.removeClass('hide');
+         messagePage.removeClass('slideUp'); 
+         messagePage.addClass('animated fadeOutDownBig');
+         setTimeout(function () {
+            messagePage.addClass('hide');
+         }, 1500);
+          
+      }
+
+   };
+   
 }]);
 
 function triggerActiveDate() {
