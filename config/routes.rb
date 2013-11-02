@@ -3,4 +3,5 @@ GoodLock::Application.routes.draw do
   get '/auth/:provider/callback', to: 'sessions#create'
   resource :session, only: %i(new destroy)
   resource :user, only: %i(show), format: 'json'
+  resources :events, only: %i(show update), format: 'json'
 end
