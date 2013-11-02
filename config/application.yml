@@ -1,0 +1,14 @@
+defaults: &defaults
+  google:
+    key: 754773505737-fq3ari4nl5b0mooio4a90t94f2ua151s.apps.googleusercontent.com
+    secret: EsRZlmBxY3MO5lG8o_8s3Ib0
+    server_key: AIzaSyA_LMCwZXMUcJ-fOidLCc9gAT-rIHD8BGA
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
