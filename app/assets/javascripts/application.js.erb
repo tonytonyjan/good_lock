@@ -59,6 +59,41 @@ app.controller('CalHeaderCtrl', ['$scope', function ($scope) {
 
 app.controller('SettingsCtrl', ['$scope', function ($scope) {
 
+   $scope.settings = {};
+   $scope.settings.accounts = [{
+      "account": "TWITTER",
+      "color": "#3684C4",
+      "is_connect": false
+   },{
+      "account": "YAHOO! NEWS",
+      "color": "#4700A5",
+      "is_connect": true
+   },{
+      "account": "FLICKR",
+      "color": "#FF0084",
+      "is_connect": true
+   },{
+      "account": "TUMBLR",
+      "color": "#5F9AC4",
+      "is_connect": false
+   },{
+      "account": "PLURK",
+      "color": "#CF682F",
+      "is_connect": false
+   },{
+      "account": "GOOGLE+",
+      "color": "#D95131",
+      "is_connect": true
+   }];
+
+   $scope.connectAccount = function (index) {
+      if ($scope.settings.accounts[index].is_connect == true) {
+         $scope.settings.accounts[index].is_connect = false;  
+      } else {
+         $scope.settings.accounts[index].is_connect = true;  
+      }
+   };
+
 }]);
 
 app.controller('SettingsHeaderCtrl', ['$scope', function ($scope) {

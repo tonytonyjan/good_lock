@@ -18,7 +18,25 @@
    <div class="fixed-header-main-content" ng-controller="SettingsCtrl">
       <h3>Adding Another Info</h3>
       <div id="settings-block">
+         <div ng-repeat="account in settings.accounts" style="margin-left:10px;">
+            <div class="pure-g account-list-block" ng-click="connectAccount($index)">
+               <div class="pure-u-4-5 row">
+                  <div class="circle pull-left" style="border-color:{{ account.color }};background-color:{{ account.color }};">
+                  </div>
+                  <div class="pull-left">
+                     {{ account.account }}
+                  </div>
+               </div>
+               <div class="pure-u-1-5 row">
+                  <div ng-class="{ hide: account.is_connect == false }">
+                     <button type="button" class="btn btn-primary btn-xs pull-right x-circle-btn">
+                        <i class="icon-ok"></i>
+                     </button>
+                  </div>
+               </div>
+            </div>
+         </div>
       </div><!-- end settings-block -->
+      <%= link_to "Sign Out", session_path, method: :delete, :class=>"btn btn-primary btn-lg btn-block block-primary-color", :style=>"margin: 20px auto 30px auto;width: 90%;" %>
    </div>
-   <%= link_to "Sign Out", session_path, method: :delete, :class=>"btn btn-primary btn-lg btn-block block-primary-color", :style=>"margin: 20px auto 30px auto;width: 90%;" %>
 </div>
