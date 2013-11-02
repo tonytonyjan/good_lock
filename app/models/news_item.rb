@@ -20,10 +20,21 @@ class NewsItem < ActiveRecord::Base
   validates :link, uniqueness: true
   validates :title, :description, :link, :image_url, :publish_at, :raw_data, presence: true
 
+  default_scope -> { order(:publish_at) }
+
   def self.search params
     if params[:begin_at].present? && params[:end_at].present?
       begin_at, end_at = Time.parse(params[:begin_at]), Time.parse(params[:end_at])
-      self.where(publish_at: begin_at..end_at)
+      now = Time.now
+      since = now.ago(3.days)
+      if params[:fake] && begin_at.between?(since, now) && end_at.between?(since, now)
+        diff = now.to_i - since.to_i
+        offset = (NewsItem.count * (begin_at.to_i - since.to_i) / diff).round
+        limit =  (NewsItem.count * (end_at.to_i - begin_at.to_i) / diff).round
+        self.offset(offset).limit(limit)
+      else
+        self.where(publish_at: begin_at..end_at)
+      end
     else
       self
     end
