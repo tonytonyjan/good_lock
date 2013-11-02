@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-YahooHack::Application.load_tasks
+GoodLock::Application.load_tasks

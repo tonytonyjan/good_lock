@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-YahooHack::Application.config.secret_key_base = '2d2f9f5307655f20a33f35878134fd6002a0bb7c64ad15b50bde9ad81e6b4cb7b37f04b08fc823b420abcda915d71f5dbe9a3c9357789622cfe6ef3741ad0eae'
+GoodLock::Application.config.secret_key_base = '2d2f9f5307655f20a33f35878134fd6002a0bb7c64ad15b50bde9ad81e6b4cb7b37f04b08fc823b420abcda915d71f5dbe9a3c9357789622cfe6ef3741ad0eae'
