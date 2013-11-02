@@ -111,6 +111,14 @@ img {
    line-height: 2.2em;
    padding-left: 10px;
 }
+#calendar-footer {
+   height: 60px;
+   background-color: #f8f8f8;
+   width: 100%;
+   position: fixed;
+   bottom: 0px;
+   z-index: 500;
+}
 
 // login related module rule
 #login-form-logo-block {
