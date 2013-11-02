@@ -269,3 +269,21 @@ img {
    height: 70px;
    margin: 5px auto;
 }
+
+// state rule
+.bounce, .pulse, .floating, .tossing, .pullUp, .pullDown, .stretchLeft, .stretchRight {
+   visibility: visible !important;
+}
+.one-edge-shadow {
+   -webkit-box-shadow: 0px 8px 6px -6px #ccc;
+      -moz-box-shadow: 0px 8px 6px -6px #ccc;
+           box-shadow: 0px 8px 6px -6px #ccc;
+}
+.full-edge-shadow {
+   -webkit-box-shadow: 0px 0px 10px -1px #dfdfdf;
+      -moz-box-shadow: 0px 0px 10px -1px #dfdfdf;
+           box-shadow: 0px 0px 10px -1px #dfdfdf;
+}
+.limit-range {
+   overflow: hidden;
+}
