@@ -89,13 +89,29 @@ app.service('Events', ['$http', function ($http) {
          
          var CalCtrlEl = angular.element($('#calendar-page'));
          var scope = CalCtrlEl.scope();
-         //scope.pushEvents(data.items);
-         console.log(data.items);
+         scope.pushEvents(data.items);
          
       })
       .error(function (data, status, headers, config) {
       });
       
+   };
+
+   this.getStatus = function (item, index) {
+
+      $http({
+         method: 'GET',
+         url: '/events/'+item.id,
+         params: {}
+      })
+      .success(function (data, status, headers, config) {
+         var CalCtrlEl = angular.element($('#calendar-page'));
+         var scope = CalCtrlEl.scope();
+         scope.events[index].lock_status = data.state;
+      })
+      .error(function (data, status, headers, config) {
+      });
+
    };
 
 }]);
@@ -131,7 +147,38 @@ app.controller('LoginCtrl', ['$scope', function ($scope) {
 
 }]);
 
-app.controller('CalCtrl', ['$scope', function ($scope) {
+app.controller('CalCtrl', ['$scope', 'Events', function ($scope, Events) {
+
+   $scope.pushEvents = function (events) {
+      
+      for (var i = 0; i < events.length; i++) { 
+
+         var start_time = events[i].start.dateTime;
+         var end_time = events[i].end.dateTime;
+
+         var start = start_time.split("T");
+         start = start[1].split("+");
+         start = start[0];
+         start = start.substring(0, start.length-3);
+
+         var end = end_time.split("T");
+         end = end[1].split("+");
+         end = end[0];
+         end = end.substring(0, end.length-3);
+
+         events[i].lock_status = 'unset';
+         events[i].startFormat = start;
+         events[i].endFormat = end;
+
+         // request to get event status
+         Events.getStatus(events[i], i);
+         
+      }
+      
+      $scope.events = events;
+      console.log($scope.events);
+
+   };
 
 }]);
 

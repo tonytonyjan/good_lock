@@ -80,6 +80,11 @@ img {
    margin-top:140px;
    margin-bottom:200px;
 }
+.big-shadow-font {
+   text-align: center;
+   color: $default-font-color;
+   text-shadow: 0px 2px 3px $default-font-color;
+}
 
 // module rule
 .circle-btn {
@@ -200,4 +205,28 @@ img {
 }
 #event-list-block {
    margin-top: 10px;
+}
+.event-item-card {
+   position: relative;
+   border-top: 1px solid #ccc;
+   border-left: 1px solid #ccc;
+   border-right: 5px solid $block-primary-color;
+   border-bottom: 1px solid #ccc;
+   margin: 0px 0px 10px 35px;
+}
+.event-start {
+   position: absolute;
+   top: -8px;
+   width: 60px;
+   text-align: center;
+   background-color: white;
+   left: -30px;
+}
+.event-end {
+   position: absolute;
+   bottom: -8px;
+   width: 60px;
+   text-align: center;
+   background-color: white;
+   left: -30px;
 }

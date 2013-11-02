@@ -12,6 +12,16 @@
    <%= render :partial => "common/calendar_header" %>
    <div class="fixed-header-footer-main-content">
       <div id="event-list-block">
+         <div ng-repeat="event in events">
+            <div class="event-item-card row hatch" ng-click="changeLockStatus($index)">
+               <div class="event-start pull-left">
+                  {{ event.startFormat }}
+               </div>
+               <div class="event-end pull-left">
+                  {{ event.endFormat }}
+               </div>
+            </div>
+         </div>
          <div class="empty-event-card hatch" ng-show="!events.length">
             <h2 class="big-shadow-font">Wow!</h2>
             <h3 class="big-shadow-font">您今天好像很閒喔！</h3>
