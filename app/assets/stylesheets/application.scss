@@ -64,3 +64,19 @@ img {
    position: relative;
    top: 30px;
 }
+.login-block {
+   background-color: $whilt-color;
+   background-image: -webkit-gradient(linear, top, bottom, from($whilt-color), to($block-gray-color));
+   background-image: -webkit-linear-gradient(top, $whilt-color, $block-gray-color);
+   background-image:    -moz-linear-gradient(top, $whilt-color, $block-gray-color);
+   background-image:      -o-linear-gradient(top, $whilt-color, $block-gray-color);
+   background-image:         linear-gradient(to bottom, $whilt-color, $block-gray-color);
+   width: 260px;
+   height: 270px;
+   margin: 0px auto 10px auto;
+   padding-top: 5px;
+   border-radius: 0px 0px 6px 6px;
+   border: 0px;
+   box-shadow: none;
+   -webkit-box-shadow: none;   
+}

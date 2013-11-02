@@ -18,3 +18,11 @@
 
 
 var app = angular.module('app', []);
+
+app.controller('LoginCtrl', ['$scope', function ($scope) {
+
+   $scope.googleOauth2 = function () {
+      window.location.href = "/auth/google_oauth2";
+   };
+
+}]);
