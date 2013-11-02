@@ -2,7 +2,9 @@
 <html>
 <head>
   <title>Good Lock</title>
-  <link rel="shortcut icon" href="/favicon.ico?v1" />
+  <link href="/launch-320.jpg" media="(device-width: 320px)" rel="apple-touch-startup-image" />
+  <link href="/launch-640.jpg" media="(device-width: 320px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+  <link href="/favicon.ico?v1" rel="shortcut icon" />
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
