@@ -58,6 +58,11 @@ img {
    background: $block-gray-color image-url('white-grid-bg-s.png') repeat; 
    min-height: 460px;
 }
+.fixed-header-main-content h3 {
+   font-size: 1.2em;
+   margin-left: 5px;
+   margin-top: 0px;
+}
 #calendar-page {
    background: $block-primary-color image-url('background-gird.png') repeat;  
 }
@@ -126,4 +131,11 @@ img {
    width: 200px;  
    margin-bottom: 30px;
    margin-top: 5px;
+}
+
+// settings related module rule
+#settings-block {
+   border-top: 1px solid #dadada;
+   border-bottom: 1px solid #dadada;
+   background-color: #fbfbfb;
 }
