@@ -12,6 +12,16 @@ namespace :news do
     NewsItem.find_each{ |news_item| news_item.reload_from_raw_data! }
   end
 
+  desc "從 server seed 導入 Yahoo 新聞"
+  task load_server_seed: :environment do
+    server_news_seed_path = Rails.root.join('db', 'server_news_seed.json')
+
+    JSON.parse(IO.read(server_news_seed_path)).each do |news|
+      news_item = YahooItem.new_from_feed_item news
+      news_item.save
+    end if File.exist? server_news_seed_path
+  end
+
   namespace :fetch do
     desc "透過 YQL 撈新聞 RSS feed"
     task yahoo: :environment do
