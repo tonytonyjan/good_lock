@@ -109,6 +109,27 @@ app.controller('CalFooterCtrl', ['$scope', 'Events', 'Swiper', function ($scope,
       calendarSwiper.swipeTo(index);
    }
 
+   $scope.addPreDay = function (less_day) {
+
+      var currentMinDay = Date.parse($scope.datebtns[0].date_format);
+
+      for (var i=1; i<=less_day; i++) {
+         var date = currentMinDay.add(-1).days();
+         $scope.datebtns.unshift(
+            {
+               date_format: date.toString("yyyy-MM-dd"),
+               month: date.toString("MMM"),
+               date: date.toString("d"),
+               day: date.toString("ddd")
+            }
+         );
+      }
+
+      var init_swip_to = 0;
+      Swiper.rebuild(init_swip_to);
+
+   }
+
 }]);
 
 app.controller('SettingsCtrl', ['$scope', function ($scope) {
@@ -176,7 +197,7 @@ function triggerActiveDate() {
 
    var CalFooterCtrlEl = angular.element($('#calendar-footer'));;
    var scope = CalFooterCtrlEl.scope();
-   /*scope.callEventsgetByDate(calendarSwiper.activeIndex);
+   //scope.callEventsgetByDate(calendarSwiper.activeIndex);
 
    if ((scope.datebtns.length-calendarSwiper.activeIndex)<7) {
       scope.addNextTenDay();
@@ -184,7 +205,7 @@ function triggerActiveDate() {
 
    if ((calendarSwiper.activeIndex)<6) {
       scope.addPreTenDay();
-   }*/
+   }
 
 }
 
