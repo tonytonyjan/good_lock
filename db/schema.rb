@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131102024549) do
+ActiveRecord::Schema.define(version: 20131102032003) do
+
+  create_table "events", force: true do |t|
+    t.integer  "user_id",                      null: false
+    t.string   "event_id",                     null: false
+    t.string   "state",      default: "unset", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "events", ["event_id", "user_id"], name: "index_events_on_event_id_and_user_id", unique: true
+  add_index "events", ["user_id"], name: "index_events_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "uid"

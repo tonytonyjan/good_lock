@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 
+  event_id: MyString
+  state: MyString
+
+two:
+  user_id: 
+  event_id: MyString
+  state: MyString
