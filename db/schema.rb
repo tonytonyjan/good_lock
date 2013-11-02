@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20131102050648) do
   add_index "events", ["user_id"], name: "index_events_on_user_id"
 
   create_table "news_items", force: true do |t|
-    t.string   "guid"
+    t.text     "guid"
     t.string   "title"
     t.text     "description"
     t.string   "link"
