@@ -270,6 +270,12 @@ img {
    margin: 5px auto;
 }
 
+// messages related module rule
+.custom-angle {
+   font-size: 30px;
+   line-height: 14px;
+}
+
 // state rule
 .bounce, .pulse, .floating, .tossing, .pullUp, .pullDown, .stretchLeft, .stretchRight {
    visibility: visible !important;

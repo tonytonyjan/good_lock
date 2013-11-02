@@ -53,6 +53,32 @@ var calendarSwiper = {};
 
 var app = angular.module('app', []);
 
+app.service('Messages', ['$http', function ($http) {
+
+   this.getItemsByTimeRange = function (start_at, end_at) {
+
+      $http({
+         method: 'GET',
+         url: '/news_items',
+         params: {
+            start_at: start_at,
+            end_at: end_at
+         }
+      })
+      .success(function (data, status, headers, config) {
+         
+         var MessagesCtrlEl = angular.element($('#messages-page'));
+         var scope = MessagesCtrlEl.scope();
+         scope.pushMessages(data);
+         
+      })
+      .error(function (data, status, headers, config) {
+      });
+
+   };
+
+}]);
+
 app.service('Events', ['$http', function ($http) {
 
    this.getByDate = function (date) {
@@ -507,7 +533,7 @@ app.controller('SettingsHeaderCtrl', ['$scope', function ($scope) {
 
 }]);
 
-app.controller('MessagesCtrl', ['$scope', function ($scope) {
+app.controller('MessagesCtrl', ['$scope', 'Tool', function ($scope, Tool) {
 
    $scope.eventItem = {};
    $scope.messages = {};
@@ -515,6 +541,16 @@ app.controller('MessagesCtrl', ['$scope', function ($scope) {
    $scope.openMessages = function (eventItem) {
 
       $scope.eventItem = eventItem;
+
+      var start_at = $scope.eventItem.start.dateTime;
+      start_at = start_at.split("+");
+      start_at = start_at[0]+'Z';
+      var end_at = $scope.eventItem.end.dateTime;
+      end_at = end_at.split("+");
+      end_at = end_at[0]+'Z';
+
+      // request to get message items
+      Messages.getItemsByTimeRange(start_at, end_at);
 
       var calendarPage = angular.element($('#calendar-page'));
       var messagesPage = angular.element($('#messages-page'));
@@ -533,6 +569,48 @@ app.controller('MessagesCtrl', ['$scope', function ($scope) {
          }, 1500);
          
       }
+
+   };
+
+   $scope.closeMessages = function () {
+      
+      var calendarPage = angular.element($('#calendar-page'));
+      var messagesPage = angular.element($('#messages-page'));
+
+      if (calendarPage.hasClass('hide') && !messagesPage.hasClass('hide')) {
+         // close settings
+         calendarPage.removeClass('hide');
+         messagesPage.removeClass('slideLeft'); 
+         messagesPage.addClass('animated slideOutRight');
+         setTimeout(function () {
+            messagesPage.addClass('hide');
+         }, 1500);
+          
+      }
+
+   };
+
+   $scope.pushMessages = function (messages) {
+      
+      $scope.messages = [];
+
+      for (var i = 0; i < messages.length; i++) { 
+
+         if (i<=23) {
+            
+            if (typeof(messages[i].raw_data.content) !== "undefined") {
+               messages[i].randomPic = messages[i].raw_data.content.url;
+            } else {
+               messages[i].randomPic = Tool.getRandomPic();   
+            }
+            messages[i].layout = Tool.getThisItemLayout(i); 
+            
+            $scope.messages.push(messages[i]);
+         }
+         
+      }
+
+      console.log($scope.messages);
 
    };
 
