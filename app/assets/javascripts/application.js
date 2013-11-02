@@ -14,6 +14,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require angular.min
+//= require picker/picker
+//= require picker/picker.date
+//= require picker/picker.time
+//= require picker/legacy
 //= require_tree .
 
 

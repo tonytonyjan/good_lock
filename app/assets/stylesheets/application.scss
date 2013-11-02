@@ -68,7 +68,7 @@ img {
    border-color: $whilt-color;
    background-color: $block-primary-color;
 }
-#calendar-header {
+#calendar-header, #settings-header {
    height: 2.7em;
    background-color: $block-primary-color;
    width: 100%;
@@ -76,7 +76,7 @@ img {
    top: 0px;
    z-index: 500;
 }
-#calendar-header h1 {
+#calendar-header h1, #settings-header h1 {
    color: $whilt-color;
    font-size: 1.2em;
    margin: 0px;
