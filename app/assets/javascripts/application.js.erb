@@ -31,6 +31,49 @@ var app = angular.module('app', []);
 
 app.service('Events', ['$http', function ($http) {
 
+   this.getByDate = function (date) {
+      
+      var day_start = Date.parse(date);
+      day_start.set({
+         millisecond: 0,
+         second: 0,
+         minute: 0,
+         hour: 0
+      });
+
+      var day_end = Date.parse(date);
+      day_end.set({
+         millisecond: 999,
+         second: 59,
+         minute: 59,
+         hour: 23
+      });
+
+      $http({
+         method: 'GET',
+         url: 'https://www.googleapis.com/calendar/v3/calendars/' + useremail + '/events',
+         headers: {
+            Authorization: 'Bearer ' + token
+         },
+         params: {
+            timeMin: day_start.toISOLocalDateTimeString(),
+            timeMax: day_end.toISOLocalDateTimeString(),
+            singleEvents: true
+         }
+      })
+      .success(function (data, status, headers, config) {
+         
+         var CalCtrlEl = angular.element($('#calendar-page'));
+         var scope = CalCtrlEl.scope();
+         //scope.pushEvents(data.items);
+         console.log(data.items);
+         
+      })
+      .error(function (data, status, headers, config) {
+      });
+      
+   };
+
 }]);
 
 app.service('Swiper', ['$http', function ($http) {
@@ -304,7 +347,7 @@ $(function(){
             
             if (typeof(thingSet.select) !== "undefined") {
                var date = new Date(thingSet.select);
-               var CalHeaderCtrlEl = angular.element($('#calendar-header'));;
+               var CalHeaderCtrlEl = angular.element($('#calendar-header'));
                var scope = CalHeaderCtrlEl.scope();
                //scope.callEventsByFilter(date.toString("yyyy-MM-dd"));   
             }
