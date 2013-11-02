@@ -16,8 +16,8 @@
 class NewsItem < ActiveRecord::Base
   serialize :raw_data
 
-  validates :guid, uniqueness: true
-  validates :title, :description, :link, :publish_at, :raw_data, presence: true
+  validates :link, uniqueness: true
+  validates :title, :description, :link, :image_url, :publish_at, :raw_data, presence: true
 
   def self.new_from_feed_item item
     new_record = new guid: item['guid']['content'],

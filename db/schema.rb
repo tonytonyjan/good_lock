@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131102062607) do
+ActiveRecord::Schema.define(version: 20131102082533) do
 
   create_table "events", force: true do |t|
     t.integer  "user_id",                      null: false
@@ -34,9 +34,8 @@ ActiveRecord::Schema.define(version: 20131102062607) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "image_url"
+    t.string   "type"
   end
-
-  add_index "news_items", ["guid"], name: "index_news_items_on_guid", unique: true
 
   create_table "users", force: true do |t|
     t.string   "uid"
