@@ -80,13 +80,13 @@ var app = angular.module('app', []);
 
 app.service('Messages', ['$http', function ($http) {
 
-   this.getItemsByTimeRange = function (start_at, end_at) {
+   this.getItemsByTimeRange = function (begin_at, end_at) {
 
       $http({
          method: 'GET',
          url: '/news_items',
          params: {
-            start_at: start_at,
+            begin_at: begin_at,
             end_at: end_at
          }
       })
@@ -650,15 +650,15 @@ app.controller('MessagesCtrl', ['$scope', 'Tool', 'Messages', function ($scope, 
 
       $scope.eventItem = eventItem;
 
-      var start_at = $scope.eventItem.start.dateTime;
-      start_at = start_at.split("+");
-      start_at = start_at[0]+'Z';
+      var begin_at = $scope.eventItem.start.dateTime;
+      begin_at = begin_at.split("+");
+      begin_at = begin_at[0]+'Z';
       var end_at = $scope.eventItem.end.dateTime;
       end_at = end_at.split("+");
       end_at = end_at[0]+'Z';
 
       // request to get message items
-      Messages.getItemsByTimeRange(start_at, end_at);
+      Messages.getItemsByTimeRange(begin_at, end_at);
 
       var calendarPage = angular.element($('#calendar-page'));
       var messagesPage = angular.element($('#messages-page'));
