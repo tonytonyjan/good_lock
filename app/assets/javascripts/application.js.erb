@@ -22,6 +22,30 @@
 //= require picker/legacy
 //= require_tree .
 
+Date.prototype.toISOLocalDateTimeString = function() {
+    var padDigits = function padDigits(number, digits) {
+        return Array(Math.max(digits - String(number).length + 1, 0)).join(0) + number;
+    }
+
+    var tzOffset = this.getTimezoneOffset() + 30 * -1,
+        tzHour = padDigits( Math.floor(tzOffset / 60), 2 ),
+        tzMin = padDigits( (tzOffset % 60), 2 ),
+        tz = "";
+
+    tz = tzHour > 0 ? "+" : "-";
+    tz = tz + tzHour + ":" + tzMin;
+
+    return this.getFullYear() 
+            + "-" + padDigits((this.getMonth()+1),2) 
+            + "-" + padDigits(this.getDate(),2) 
+            + "T" 
+            + padDigits(this.getHours(),2)
+            + ":" + padDigits(this.getMinutes(),2)
+            + ":" + padDigits(this.getSeconds(),2)
+            + "." + padDigits(this.getMilliseconds(),2)
+            + "Z";
+}
+
 var token = '';
 var refresh_token = '';
 var useremail = '';
@@ -171,6 +195,10 @@ app.controller('CalFooterCtrl', ['$scope', 'Events', 'Swiper', function ($scope,
       );
    }
 
+   $scope.callEventsgetByDate = function (current_active) {
+      Events.getByDate($scope.datebtns[current_active].date_format);
+   }
+
    $scope.swipeToSlide = function(index) {
       calendarSwiper.swipeTo(index);
    }
@@ -285,7 +313,7 @@ function triggerActiveDate() {
 
    var CalFooterCtrlEl = angular.element($('#calendar-footer'));;
    var scope = CalFooterCtrlEl.scope();
-   //scope.callEventsgetByDate(calendarSwiper.activeIndex);
+   scope.callEventsgetByDate(calendarSwiper.activeIndex);
 
    if ((scope.datebtns.length-calendarSwiper.activeIndex)<7) {
       scope.addNextTenDay();
