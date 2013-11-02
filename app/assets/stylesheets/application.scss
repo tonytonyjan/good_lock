@@ -21,3 +21,11 @@ $primary-font-color:    #3390ea;
 $whilt-color:           #fff;
 $block-primary-color:   #3390ea;
 $block-gray-color:      #eee;
+
+body {
+   width: 100%;
+   height: 100%;
+   font: 100% $font-stack $default-font-size;
+   color: $default-font-color;
+   //background: $block-primary-color image-url('background-gird.png') repeat;
+}
