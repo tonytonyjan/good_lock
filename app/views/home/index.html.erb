@@ -11,6 +11,12 @@
 <div id="calendar-page" class="bigEntrance absolute-layout" ng-controller="CalCtrl">
    <%= render :partial => "common/calendar_header" %>
    <div class="fixed-header-footer-main-content">
+      <div id="event-list-block">
+         <div class="empty-event-card hatch" ng-show="!events.length">
+            <h2 class="big-shadow-font">Wow!</h2>
+            <h3 class="big-shadow-font">您今天好像很閒喔！</h3>
+         </div>
+      </div>
    </div>
    <%= render :partial => "common/calendar_footer" %>
 </div>

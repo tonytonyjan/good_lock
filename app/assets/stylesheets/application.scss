@@ -76,6 +76,10 @@ img {
    background: $block-primary-color image-url('background-gird.png') repeat;
    z-index: 1000;
 }
+.empty-event-card {
+   margin-top:140px;
+   margin-bottom:200px;
+}
 
 // module rule
 .circle-btn {
@@ -193,4 +197,7 @@ img {
 .swiper-slide-active {
    color: $whilt-color;
    background-color: $block-primary-color;
+}
+#event-list-block {
+   margin-top: 10px;
 }
