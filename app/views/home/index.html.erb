@@ -86,6 +86,15 @@
 
 <!-- messages page -->
 <div id="messages-page" class="absolute-layout hide" ng-controller="MessagesCtrl">
+   <%= render :partial => "common/messages_header" %>
+   <div class="fixed-header-main-content-with-msry">
+      <div id="messages_container" class="masonry" ng-class="{ hide: !messages.length }">
+      </div>
+      <div class="empty-event-card hatch" ng-show="!messages.length">
+         <h2 class="big-shadow-font">Wow!</h2>
+         <h3 class="big-shadow-font">您在本時段沒有任何訊息喔！</h3>
+      </div>
+   </div>
 </div>
 
 <!-- message page -->

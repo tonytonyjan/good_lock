@@ -201,17 +201,17 @@ app.controller('CalCtrl', ['$scope', 'Events', function ($scope, Events) {
          $scope.events[index].lock_status = 'unlock';
          Events.setUnlock($scope.events[index]);
          // open messages
-         //var MessagesCtrlEl = angular.element($('#messages-page'));
-         //var scope = MessagesCtrlEl.scope();
-         //scope.openMessages($scope.events[index]);
+         var MessagesCtrlEl = angular.element($('#messages-page'));
+         var scope = MessagesCtrlEl.scope();
+         scope.openMessages($scope.events[index]);
       
       } else if ($scope.events[index].lock_status=='unlock') {
       
          $scope.events[index].lock_status = 'unlock';
          // open messages
-         //var MessagesCtrlEl = angular.element($('#messages-page'));
-         //var scope = MessagesCtrlEl.scope();
-         //scope.openMessages($scope.events[index]);
+         var MessagesCtrlEl = angular.element($('#messages-page'));
+         var scope = MessagesCtrlEl.scope();
+         scope.openMessages($scope.events[index]);
       
       }
 
@@ -508,6 +508,33 @@ app.controller('SettingsHeaderCtrl', ['$scope', function ($scope) {
 }]);
 
 app.controller('MessagesCtrl', ['$scope', function ($scope) {
+
+   $scope.eventItem = {};
+   $scope.messages = {};
+
+   $scope.openMessages = function (eventItem) {
+
+      $scope.eventItem = eventItem;
+
+      var calendarPage = angular.element($('#calendar-page'));
+      var messagesPage = angular.element($('#messages-page'));
+      var messagesContainer = angular.element($('#messages_container'));
+      messagesContainer.addClass('hide');
+
+      if (messagesPage.hasClass('hide') && !calendarPage.hasClass('hide')) {
+         // open messages
+         messagesPage.removeClass('hide');
+         messagesPage.removeClass('animated slideOutRight');
+         messagesPage.addClass('slideLeft');
+         setTimeout(function () {
+            messagesContainer.removeClass('hide');
+            calendarPage.addClass('hide');
+            //Tool.renderMsnry();
+         }, 1500);
+         
+      }
+
+   };
 
 }]);
 

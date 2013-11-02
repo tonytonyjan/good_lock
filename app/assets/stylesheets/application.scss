@@ -64,7 +64,12 @@ img {
    background: $block-gray-color image-url('white-grid-bg-s.png') repeat;
    min-height: 420px;
 }
-.fixed-header-main-content h3 {
+.fixed-header-main-content-with-msry {
+   padding: 35px 0px 0px 0px; 
+   background: $block-gray-color image-url('white-grid-bg-s.png') repeat; 
+   min-height: 460px;
+}
+.fixed-header-main-content h3, .fixed-header-main-content-with-msry h3 {
    font-size: 1.2em;
    margin-left: 5px;
    margin-top: 0px;
@@ -124,7 +129,7 @@ img {
    background-color: $block-primary-color;
 }
 
-#calendar-header, #settings-header {
+#calendar-header, #settings-header, #messages-header, #message-header {
    height: 2.7em;
    background-color: $block-primary-color;
    width: 100%;
@@ -132,7 +137,7 @@ img {
    top: 0px;
    z-index: 500;
 }
-#calendar-header h1, #settings-header h1 {
+#calendar-header h1, #settings-header h1, #messages-header h1, #message-header h1 {
    color: $whilt-color;
    font-size: 1.2em;
    margin: 0px;
