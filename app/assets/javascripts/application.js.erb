@@ -22,6 +22,10 @@
 //= require picker/legacy
 //= require_tree .
 
+var token = '';
+var refresh_token = '';
+var useremail = '';
+var calendarSwiper = {};
 
 var app = angular.module('app', []);
 
@@ -30,6 +34,25 @@ app.service('Events', ['$http', function ($http) {
 }]);
 
 app.service('Swiper', ['$http', function ($http) {
+
+   this.rebuild = function (swipe_to) {
+
+      setTimeout(function () {
+         calendarSwiper.destroy();
+         calendarSwiper = new Swiper('.swiper-container',{
+            centeredSlides: true,
+            slidesPerView: 'auto',
+            pagination: '.pagination',
+            paginationClickable: true,
+            initialSlide: swipe_to,
+            autoResize: false
+         }); 
+         var initWidth = parseInt($(".swiper-wrapper").css("width"))+300;
+         $(".swiper-wrapper").css("width", initWidth+"px");
+         calendarSwiper.swipeTo(swipe_to);
+      }, 200);
+
+   };
 
 }]);
 
@@ -109,11 +132,11 @@ app.controller('CalFooterCtrl', ['$scope', 'Events', 'Swiper', function ($scope,
       calendarSwiper.swipeTo(index);
    }
 
-   $scope.addPreDay = function (less_day) {
-
+   $scope.addPreTenDay = function () {
+      
+      console.log('addPreTenDay');
       var currentMinDay = Date.parse($scope.datebtns[0].date_format);
-
-      for (var i=1; i<=less_day; i++) {
+      for (var i=1; i<=10; i++) {
          var date = currentMinDay.add(-1).days();
          $scope.datebtns.unshift(
             {
@@ -125,10 +148,32 @@ app.controller('CalFooterCtrl', ['$scope', 'Events', 'Swiper', function ($scope,
          );
       }
 
-      var init_swip_to = 0;
+      var init_swip_to = calendarSwiper.activeIndex+10;
       Swiper.rebuild(init_swip_to);
+   
+   };
 
-   }
+   $scope.addNextTenDay = function () {
+      
+      console.log('addNextTenDay');
+      var currentMaxIndex = $scope.datebtns.length-1;
+      var currentMaxDay = Date.parse($scope.datebtns[currentMaxIndex].date_format);
+      for (var i=1; i<=10; i++) {
+         var date = currentMaxDay.add(1).days();
+         $scope.datebtns.push(
+            {
+               date_format: date.toString("yyyy-MM-dd"),
+               month: date.toString("MMM"),
+               date: date.toString("d"),
+               day: date.toString("ddd")
+            }
+         );
+      }
+
+      var init_swip_to = calendarSwiper.activeIndex;
+      Swiper.rebuild(init_swip_to);
+      
+   };
 
 }]);
 
