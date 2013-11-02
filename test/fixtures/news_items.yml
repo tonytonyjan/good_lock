@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: news_items
+#
+#  id          :integer          not null, primary key
+#  guid        :text
+#  title       :string(255)
+#  description :text
+#  link        :string(255)
+#  publish_at  :datetime
+#  raw_data    :text
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
