@@ -56,7 +56,6 @@ namespace :news do
           logger.warn e.backtrace.join($/)
         end
       end
-      logger.close
     end # yahoo: :environment
 
     desc "抓一個禮拜內 flickr 的資料，過濾掉介紹小於十個字的照片"
@@ -98,7 +97,6 @@ namespace :news do
         logger.warn "#{e.class}: #{e.message}"
         logger.warn e.backtrace.join($/)
       end
-      logger.close
     end # task flickr: :environment do
 
     desc "抓取文化部的 open data"
