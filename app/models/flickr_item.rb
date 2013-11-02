@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: news_items
+#
+#  id          :integer          not null, primary key
+#  title       :string(255)
+#  description :text
+#  link        :string(255)
+#  publish_at  :datetime
+#  raw_data    :text
+#  created_at  :datetime
+#  updated_at  :datetime
+#  image_url   :text
+#  type        :string(255)
+#
+
 class FlickrItem < NewsItem
   validates :description, length: { minimum: 10 }
   def self.new_from_flickr_item item

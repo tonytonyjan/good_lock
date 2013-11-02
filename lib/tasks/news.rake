@@ -3,8 +3,8 @@ namespace :news do
   task fetch: %i(fetch:yahoo fetch:flickr)
 
   desc "先從 news_seed.json 匯入新聞到 db，再 `news:fetch`，再將 db 匯出回 news_seed.json"
-  task export: %i(db:seed fetch) do
-    File.write(Rails.root.join('db', 'news_seed.json'), NewsItem.all.map(&:raw_data).to_json)
+  task export: :environment do
+    File.write(Rails.root.join('db', 'news_seed.json'), NewsItem.all.map{ |x| x.raw_data.merge tj_type: x.type }.to_json)
   end
 
   desc "從 raw data 重新產生資料"
@@ -43,11 +43,11 @@ namespace :news do
           if res.is_a?(Net::HTTPSuccess)
             json_body = JSON.parse(res.body)
             json_body['query']['results'].try(:[], 'item').to_a.each do |item|
-              news_item = NewsItem.new_from_feed_item(item)
+              news_item = YahooItem.new_from_feed_item(item)
               if news_item.save
                 logger.info %Q{\e[1;32m[新增]\e[0;39;49m #{I18n.l news_item.publish_at, format: :long} "#{news_item.title}"}
               else
-                logger.warn %Q{\e[1;31m[重複]\e[0;39;49m #{I18n.l news_item.publish_at, format: :long} "#{news_item.title}"}
+                logger.warn %Q{\e[1;31m[跳過]\e[0;39;49m #{I18n.l news_item.publish_at, format: :long} #{news_item.errors.full_messages.join(', ')}}
               end
             end
           end
@@ -56,9 +56,10 @@ namespace :news do
           logger.warn e.backtrace.join($/)
         end
       end
-    end
+      logger.close
+    end # yahoo: :environment
 
-    desc "抓一個禮拜內 flickr 的資料，過濾掉沒有照片介紹小於十個字"
+    desc "抓一個禮拜內 flickr 的資料，過濾掉介紹小於十個字的照片"
     task flickr: :environment do
       uri = URI('http://api.flickr.com/services/rest')
       params = {
@@ -69,7 +70,8 @@ namespace :news do
         tags: 'yahoo',
         # tag_mode: 'all', # (any|all)
         format: :json,
-        nojsoncallback: true
+        nojsoncallback: true,
+        per_page: 500
       }
 
       log_file = File.open(Rails.root.join('log', "#{Rails.env}.news.log"), 'a')
@@ -88,7 +90,7 @@ namespace :news do
             if flickr_item.save
               logger.info %Q{\e[1;32m[新增]\e[0;39;49m #{I18n.l flickr_item.publish_at, format: :long} "#{flickr_item.title}"}
             else
-              logger.warn %Q{\e[1;31m[跳過]\e[0;39;49m #{I18n.l flickr_item.publish_at, format: :long} "#{flickr_item.errors.full_messages.join(', ')}"}
+              logger.warn %Q{\e[1;31m[跳過]\e[0;39;49m #{I18n.l flickr_item.publish_at, format: :long} #{flickr_item.errors.full_messages.join(', ')}}
             end
           end
         end
@@ -96,6 +98,7 @@ namespace :news do
         logger.warn "#{e.class}: #{e.message}"
         logger.warn e.backtrace.join($/)
       end
+      logger.close
     end # task flickr: :environment do
   end
 end
