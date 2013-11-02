@@ -13,4 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require angular.min
 //= require_tree .
+
+
+var app = angular.module('app', []);
