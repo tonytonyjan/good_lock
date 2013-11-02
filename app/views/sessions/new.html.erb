@@ -8,5 +8,11 @@
       <%= image_tag 'signin-form-top.png' %>
    </div>
    <div class="well well-lg login-block" ng-controller="LoginCtrl">
+      <h1>
+         Please sign in with your Google account
+      </h1>
+      <button id="google-login-btn" ng-click="googleOauth2()" class="btn btn-primary btn-lg btn-block block-primary-color">
+         Sign in with Google
+      </button>
    </div>
 </div>
