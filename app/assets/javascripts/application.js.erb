@@ -59,6 +59,24 @@ app.controller('CalHeaderCtrl', ['$scope', function ($scope) {
 
 app.controller('SettingsHeaderCtrl', ['$scope', function ($scope) {
 
+   $scope.closeSettings = function () {
+
+      var calendarPage = angular.element($('#calendar-page'));
+      var settingsPage = angular.element($('#settings-page'));
+
+      if (calendarPage.hasClass('hide') && !settingsPage.hasClass('hide')) {
+         // close settings
+         calendarPage.removeClass('hide');
+         settingsPage.removeClass('slideUp'); 
+         settingsPage.addClass('animated fadeOutDownBig');
+         setTimeout(function () {
+            settingsPage.addClass('hide');
+         }, 1500);
+          
+      }
+      
+   };
+
 }]);
 
 $(function(){
