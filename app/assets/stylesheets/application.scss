@@ -32,15 +32,12 @@ body {
    color: $default-font-color;
    background: $block-primary-color image-url('background-gird.png') repeat;
 }
-
 img {
    max-width: 100%;
 }
-
 .block-primary-color {
    background-color: $block-primary-color; 
 }
-
 .gray-font-color {
    color: $gray-font-color; 
 }
@@ -53,9 +50,11 @@ img {
    width: 100%;
    height: 100%;
 }
+#calendar-page {
+   background: $block-primary-color image-url('background-gird.png') repeat;  
+}
 
 // module rule
-
 // login related module rule
 #login-form-logo-block {
    width: 260px;
