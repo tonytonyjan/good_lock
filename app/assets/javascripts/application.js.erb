@@ -86,7 +86,8 @@ app.service('Messages', ['$http', function ($http) {
          url: '/news_items',
          params: {
             begin_at: begin_at,
-            end_at: end_at
+            end_at: end_at,
+            fake: true
          }
       })
       .success(function (data, status, headers, config) {
@@ -597,12 +598,12 @@ app.controller('SettingsCtrl', ['$scope', function ($scope) {
       "color": "#5F9AC4",
       "is_connect": false
    },{
-      "account": "PLURK",
-      "color": "#CF682F",
-      "is_connect": false
-   },{
       "account": "GOOGLE+",
       "color": "#D95131",
+      "is_connect": true
+   },{
+      "account": "iCulture",
+      "color": "#CF682F",
       "is_connect": true
    }];
 

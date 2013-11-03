@@ -89,7 +89,7 @@
    <div class="fixed-header-main-content-with-msry">
       <div id="messages_container" class="masonry" ng-class="{ hide: !messages.length }">
          <div class="grid-sizer"></div>
-         <div ng-repeat="message in messages" class="item {{ message.layout.block }}" ng-click="openMessage($index)">
+         <div ng-repeat="message in messages" class="item {{ message.layout.block }} animated flipInX" ng-click="openMessage($index)">
             <div class="item-image">
                <img ng-src="{{ message && message.image_url || '' }}" />
             </div>
