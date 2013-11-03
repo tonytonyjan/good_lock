@@ -650,11 +650,7 @@ app.controller('MessagesCtrl', ['$scope', 'Tool', 'Messages', function ($scope, 
       $scope.eventItem = eventItem;
 
       var begin_at = $scope.eventItem.start.dateTime;
-      begin_at = begin_at.split("+");
-      begin_at = begin_at[0]+'Z';
       var end_at = $scope.eventItem.end.dateTime;
-      end_at = end_at.split("+");
-      end_at = end_at[0]+'Z';
 
       // request to get message items
       Messages.getItemsByTimeRange(begin_at, end_at);
