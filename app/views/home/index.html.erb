@@ -97,7 +97,7 @@
                <%= image_tag "ui/fullscreen-btn.png" %>
             </div>
             <div class="item-title-block" ng-class="{ hide: message.layout.title == 'off' }">
-               {{ message.title }}
+               {{ message.stripped_title }}
             </div>
             <div class="item-type-image" ng-class="{ hide: message.layout.title == 'off' }">
                <div ng-class="{ hide: message.type != 'YahooItem' }">
