@@ -86,8 +86,7 @@ app.service('Messages', ['$http', function ($http) {
          url: '/news_items',
          params: {
             begin_at: begin_at,
-            end_at: end_at,
-            fake: true
+            end_at: end_at
          }
       })
       .success(function (data, status, headers, config) {
