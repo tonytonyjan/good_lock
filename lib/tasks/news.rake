@@ -1,3 +1,4 @@
+require 'net/http'
 namespace :news do
   desc "撈所有 Yahoo、Flickr 的資料"
   task fetch: %i(fetch:yahoo fetch:flickr fetch:iculture)
