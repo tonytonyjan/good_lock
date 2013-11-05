@@ -4,7 +4,12 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'sqlite3', group: :development
+
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+end
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -49,11 +54,8 @@ gem 'settingslogic'
 gem 'jquery-turbolinks'
 gem 'enumerize'
 gem 'cancan'
-gem 'capistrano'
-gem 'capistrano-rails'
-gem 'capistrano-bundler'
-gem 'capistrano-rvm'
 gem 'therubyracer', require: 'v8'
 gem 'whenever', require: false
 gem 'kaminari'
 gem 'rails-i18n'
+gem 'unicorn'
