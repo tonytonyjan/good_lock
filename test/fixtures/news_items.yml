@@ -5,7 +5,7 @@
 #  id          :integer          not null, primary key
 #  title       :string(255)
 #  description :text
-#  link        :string(255)
+#  link        :text
 #  publish_at  :datetime
 #  raw_data    :text
 #  created_at  :datetime
