@@ -54,15 +54,15 @@ Rake Tasks
 Fetch News
 ----------
 
-``` bash
+```
 $ rake news:fetch
 ```
 
 Export News
 -----------
 
-``` bash
-rake news:export
+```
+$ rake news:export
 ```
 
 To see more rake tasks, type `rake -D news`
