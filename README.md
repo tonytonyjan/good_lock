@@ -5,11 +5,44 @@ Dependency
 * Ruby
 * Git
 
-Usage
-=====
+How to Build
+============
 
-``` bash
+Install Ruby
+------------
+
+
+Install Git
+-----------
+
+### Debian
+
+```
+$ sudo apt-get install git
+```
+
+Install Ruby
+------------
+
+We suggest you use [RVM](https://rvm.io/)
+
+```
+$ \curl -L https://get.rvm.io | bash -s stable
+$ rvm install 2.0.0
+$ rvm use 2.0.0 --default
+```
+
+Install Required Gems
+---------------------
+
+```
 $ gem install rake bundler rails -N
+```
+
+Clone and Build the Project
+---------------------------
+
+```
 $ git clone git@github.com:tonytonyjan/good_lock.git
 $ cd good_lock
 $ bundle install
