@@ -9,6 +9,7 @@ Usage
 =====
 
 ``` bash
+$ gem install rake bundler rails -N
 $ git clone git@github.com:tonytonyjan/good_lock.git
 $ cd good_lock
 $ bundle install
