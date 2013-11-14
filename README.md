@@ -8,10 +8,6 @@ Dependency
 How to Build
 ============
 
-Install Ruby
-------------
-
-
 Install Git
 -----------
 
@@ -50,7 +46,7 @@ $ rake db:setup
 $ rails server
 ```
 
-Open your browser and go to http://localhost:3000
+Go to [http://localhost:3000](http://localhost:3000)
 
 Rake Tasks
 ==========
